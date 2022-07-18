@@ -1,0 +1,19 @@
+create or replace procedure GETCAT
+(Category_Name in varchar2 , CID out sys_refcursor)
+as
+begin
+open CID for
+select FILMTITLE
+from MOVIES
+where FILMCATEGORY = Category_Name;
+end;
+
+
+----------------------------------------------------------------
+
+
+create or replace PROCEDURE GETTITLE (s_Title in varchar2 , S_ID out NUMBER ,S_date out Date ,S_cat out VARCHAR2  ) AS
+BEGIN
+select TVSHOWID,RELEASEDATE,TVSHOWCATEGORY into S_id, S_date ,S_cat
+From TVSHOW where TVSHOWTITLE = s_Title;
+END GETTITLE;

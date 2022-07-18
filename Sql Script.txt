@@ -1,0 +1,563 @@
+DROP TABLE categories CASCADE constraints;
+DROP TABLE client CASCADE constraints;
+DROP TABLE pack CASCADE constraints;
+DROP TABLE Movies CASCADE constraints;
+DROP TABLE Series CASCADE constraints;
+DROP TABLE TVshow CASCADE constraints;
+DROP TABLE my_movies CASCADE constraints;
+--------------------------------------------------------------------------------------
+CREATE TABLE pack
+  (
+    pack_name  VARCHAR2(40),
+    pack_price NUMBER(20)NOT NULL,
+    PRIMARY KEY(pack_name)
+  );
+INSERT INTO pack
+  (pack_name, pack_price
+  ) VALUES
+  ('daily',30
+  );
+INSERT INTO pack
+  (pack_name, pack_price
+  ) VALUES
+  ('monthly',90
+  );
+INSERT INTO pack
+  (pack_name, pack_price
+  ) VALUES
+  ('yearly',650
+  );
+INSERT INTO pack
+  (pack_name, pack_price
+  ) VALUES
+  ('unsubscribe',0
+  );
+COMMIT;
+-----------------------------------------------------------------------------------------
+CREATE TABLE client
+  (
+    client_fname           VARCHAR(40)NOT NULL,
+    client_lname           VARCHAR(40),
+    client_phone           NUMBER(20),
+    client_id              NUMBER(20)NOT NULL,
+    client_email           VARCHAR2(40)NOT NULL,
+    client_pass            VARCHAR2(40)NOT NULL,
+    client_interstcatogery VARCHAR2(100)NOT NULL,
+    client_package         VARCHAR2(40)NOT NULL,
+    FOREIGN KEY(client_package)REFERENCES pack(pack_name),
+    CONSTRAINT user_pk PRIMARY KEY(client_id)
+
+  );
+INSERT
+INTO client
+  (
+    client_fname,
+    client_lname,
+    client_phone,
+    client_id,
+    client_email,
+    client_pass,
+    client_interstcatogery ,
+    client_package
+  )
+  VALUES
+  (
+    'mohamed',
+    'ali',
+    01211075316,1,
+    'mohamedali@yahoo.com',
+    123456,
+    'films',
+    'monthly'
+  );
+INSERT
+INTO client
+  (
+    client_fname,
+    client_lname,
+    client_phone,
+    client_id,
+    client_email,
+    client_pass,
+    client_interstcatogery,
+    client_package
+  )
+  VALUES
+  (
+    'sehab',
+    'khaled',
+    01211076427,2,
+    'sehabkhaled@yahoo.com',
+    56789,
+    'program',
+    'unsubscribe'
+  );
+INSERT
+INTO client
+  (
+    client_fname,
+    client_lname,
+    client_phone,
+    client_id,
+    client_email,
+    client_pass,
+    client_interstcatogery,
+    client_package
+  )
+  VALUES
+  (
+    'malak',
+    'ramy',
+    01211077538,3,
+    'malakramy@yahoo.com',
+    0258963,
+    'series',
+    'daily'
+  );
+INSERT
+INTO client
+  (
+    client_fname,
+    client_lname,
+    client_phone,
+    client_id,
+    client_email,
+    client_pass,
+    client_interstcatogery,
+    client_package
+  )
+  VALUES
+  (
+    'malak',
+    'ramy',
+    01211077538,4,
+    'doaaahmed@yahoo.com',
+    147852,
+    'series',
+    'yearly'
+  );
+INSERT
+INTO client
+  (
+    client_fname,
+    client_lname,
+    client_phone,
+    client_id,
+    client_email,
+    client_pass,
+    client_interstcatogery,
+    client_package
+  )
+  VALUES
+  (
+    'hassan',
+    'ramy',
+    011145158581,5,
+    'mahakarim@yahoo.com',
+    0220990,
+    'series',
+    'daily'
+  );
+COMMIT;
+--------------------------------------------------------------------------------------------
+CREATE TABLE categories
+  (
+    CategoryName VARCHAR2 (20) PRIMARY KEY
+  );
+INSERT INTO categories
+  (CategoryName
+  ) VALUES
+  ('Comedy'
+  );
+INSERT INTO categories
+  (CategoryName
+  ) VALUES
+  ('Action'
+  );
+INSERT INTO categories
+  (CategoryName
+  ) VALUES
+  ('Sci-Fi'
+  );
+INSERT INTO categories
+  (CategoryName
+  ) VALUES
+  ('Adventure'
+  );
+INSERT INTO categories
+  (CategoryName
+  ) VALUES
+  ('Animation'
+  );
+INSERT INTO categories
+  (CategoryName
+  ) VALUES
+  ('Fantasy'
+  );
+COMMIT;
+-----------------------------------------------------------------------------------------
+CREATE TABLE Movies
+  (
+    FilmID    NUMBER(10) PRIMARY KEY,
+    FilmTitle VARCHAR2(50),
+    ReleaseDate DATE,
+    FilmCategory VARCHAR2(20) REFERENCES categories (CategoryName)
+  );
+INSERT
+INTO Movies
+  (
+    FilmID,
+    FilmTitle,
+    ReleaseDate,
+    FilmCategory
+  )
+  VALUES
+  (
+    1,
+    'The Twilight Saga Breaking Dawn',
+    '16-Nov-2012',
+    'Fantasy'
+  );
+INSERT
+INTO Movies
+  (
+    FilmID,
+    FilmTitle,
+    ReleaseDate,
+    FilmCategory
+  )
+  VALUES
+  (
+    2,
+    'Harry Potter and the Deathly Hallows',
+    '15-Jul-2011',
+    'Adventure'
+  );
+INSERT
+INTO Movies
+  (
+    FilmID,
+    FilmTitle,
+    ReleaseDate,
+    FilmCategory
+  )
+  VALUES
+  (
+    3,
+    'The Smurfs',
+    '29-Jul-2011',
+    'Animation'
+  );
+INSERT
+INTO Movies
+  (
+    FilmID,
+    FilmTitle,
+    ReleaseDate,
+    FilmCategory
+  )
+  VALUES
+  (
+    10,
+    'bad jock',
+    '1-Jul-2021',
+    'Animation'
+  );
+INSERT
+INTO Movies
+  (
+    FilmID,
+    FilmTitle,
+    ReleaseDate,
+    FilmCategory
+  )
+  VALUES
+  (
+    4,
+    'Fast',
+    '15-Jul-2011',
+    'Action'
+  );
+  INSERT
+INTO Movies
+  (
+    FilmID,
+    FilmTitle,
+    ReleaseDate,
+    FilmCategory
+  )
+  VALUES
+  (
+    18,
+    'Kill',
+    '18-Jul-1980',
+    'Action'
+  );
+  
+  INSERT
+INTO Movies
+  (
+    FilmID,
+    FilmTitle,
+    ReleaseDate,
+    FilmCategory
+  )
+  VALUES
+  (
+    7,
+    'Kill',
+    '20-Jul-2021',
+    'Action'
+  );
+INSERT
+INTO Movies
+  (
+    FilmID,
+    FilmTitle,
+    ReleaseDate,
+    FilmCategory
+  )
+  VALUES
+  (
+    5,
+    '22 jump street',
+    '30-Jun-2017',
+    'Comedy'
+  );
+  INSERT
+INTO Movies
+  (
+    FilmID,
+    FilmTitle,
+    ReleaseDate,
+    FilmCategory
+  )
+  VALUES
+  (
+    8,
+    'PLay',
+    '1-Jun-2027',
+    'Comedy'
+  );
+INSERT
+INTO Movies
+  (
+    FilmID,
+    FilmTitle,
+    ReleaseDate,
+    FilmCategory
+  )
+  VALUES
+  (
+    6,
+    'Toy Story 3',
+    '18-Jun-2010',
+    'Animation'
+  );
+
+INSERT
+INTO Movies
+  (
+    FilmID,
+    FilmTitle,
+    ReleaseDate,
+    FilmCategory
+  )
+  VALUES
+  (
+    9,
+    'Galaxy',
+    '17-Jun-2020',
+    'Fantasy'
+  );
+COMMIT;
+----------------------------------------------------------------------------------------
+CREATE TABLE Series
+  (
+    SeriesID    NUMBER(10) PRIMARY KEY,
+    SeriesTitle VARCHAR2(50),
+    ReleaseDate DATE,
+    SeriesCategory VARCHAR2(20) REFERENCES categories (CategoryName)
+  );
+INSERT
+INTO Series
+  (
+    SeriesID,
+    SeriesTitle,
+    ReleaseDate,
+    SeriesCategory
+  )
+  VALUES
+  (
+    1,
+    'Sherlock holmes',
+    '18-Jun-2012',
+    'Adventure'
+  );
+INSERT
+INTO Series
+  (
+    SeriesID,
+    SeriesTitle,
+    ReleaseDate,
+    SeriesCategory
+  )
+  VALUES
+  (
+    2,
+    'Kingdom',
+    '18-Jun-2012',
+    'Action'
+  );
+INSERT
+INTO Series
+  (
+    SeriesID,
+    SeriesTitle,
+    ReleaseDate,
+    SeriesCategory
+  )
+  VALUES
+  (
+    3,
+    'La casa de papel',
+    '18-Jun-2015',
+    'Action'
+  );
+INSERT
+INTO Series
+  (
+    SeriesID,
+    SeriesTitle,
+    ReleaseDate,
+    SeriesCategory
+  )
+  VALUES
+  (
+    4,
+    'Breaking Bad',
+    '18-Jun-2012',
+    'Fantasy'
+  );
+COMMIT;
+----------------------------------------------------------------------------------------
+CREATE TABLE TVshow
+  (
+    TVshowID    NUMBER(10) PRIMARY KEY,
+    TVshowTitle VARCHAR2(50),
+    ReleaseDate DATE,
+    TVshowCategory VARCHAR2(20) REFERENCES categories (CategoryName)
+  );
+INSERT
+INTO TVshow
+  (
+    TVshowID,
+    TVshowTitle,
+    ReleaseDate,
+    TVshowCategory
+  )
+  VALUES
+  (
+    1,
+    'Alabakera',
+    '18-Jun-2012',
+    'Adventure'
+  );
+INSERT
+INTO TVshow
+  (
+    TVshowID,
+    TVshowTitle,
+    ReleaseDate,
+    TVshowCategory
+  )
+  VALUES
+  (
+    2,
+    'On Sport',
+    '18-Jun-2019',
+    'Comedy'
+  );
+INSERT
+INTO TVshow
+  (
+    TVshowID,
+    TVshowTitle,
+    ReleaseDate,
+    TVshowCategory
+  )
+  VALUES
+  (
+    3,
+    'Ramez',
+    '18-Jun-2012',
+    'Sci-Fi'
+  );
+COMMIT;
+-----------------------------------------------------------------------------------------
+CREATE TABLE my_movies
+  (
+    FilmID   NUMBER(10) REFERENCES Movies (FilmID) ,
+    MemberID NUMBER(10) REFERENCES client(client_id),
+    FilmTitle VARCHAR2(50),
+    ReleaseDate DATE,
+    FilmCategory VARCHAR2(20) REFERENCES categories (CategoryName),
+    CONSTRAINT Flm_Mem_PK PRIMARY KEY(FilmID, MemberID)
+  );
+INSERT INTO my_movies
+  (FilmID,MemberID,FilmTitle ,ReleaseDate,FilmCategory) VALUES
+  (1,1,
+    'The Twilight Saga Breaking Dawn',
+    '16-Nov-2012',
+    'Fantasy'
+  );
+INSERT INTO my_movies
+(FilmID,MemberID,FilmTitle ,ReleaseDate,FilmCategory)VALUES
+  (3,1,
+    'La casa de papel',
+    '18-Jun-2015',
+    'Action'
+  );
+INSERT INTO my_movies
+(FilmID,MemberID,FilmTitle ,ReleaseDate,FilmCategory) VALUES
+  (8,1, 
+    'PLay',
+    '1-Jun-2027',
+    'Comedy'
+  );
+  INSERT INTO my_movies
+(FilmID,MemberID,FilmTitle ,ReleaseDate,FilmCategory) VALUES
+  (5,2,
+    'Kill',
+    '20-Jul-2021',
+    'Action'
+  );
+    INSERT INTO my_movies
+(FilmID,MemberID,FilmTitle ,ReleaseDate,FilmCategory) VALUES
+  (    3,3,
+    'The Smurfs',
+    '29-Jul-2011',
+    'Animation'
+  );
+      INSERT INTO my_movies
+(FilmID,MemberID,FilmTitle ,ReleaseDate,FilmCategory) VALUES
+  (   4,4,
+    'Fast',
+    '15-Jul-2011',
+    'Action'
+  );
+      INSERT INTO my_movies
+(FilmID,MemberID,FilmTitle ,ReleaseDate,FilmCategory) VALUES
+  (   4,3,
+    'Fast',
+    '15-Jul-2011',
+    'Action'
+  );
+  INSERT INTO my_movies
+(FilmID,MemberID,FilmTitle ,ReleaseDate,FilmCategory) VALUES
+  (5,3,
+    'Kill',
+    '20-Jul-2021',
+    'Action'
+  );
+COMMIT;
